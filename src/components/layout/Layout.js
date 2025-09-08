@@ -1,4 +1,5 @@
 // src/components/layout/Layout.js
+"use client";
 
 import React from 'react';
 import Navbar from '../Navbar';
