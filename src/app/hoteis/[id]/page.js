@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import Layout from '../../../components/layout/Layout';
+//import Layout from '../../../components/layout/Layout';
 import CartaoQuarto from '../../../components/CartaoQuarto';
 import styles from './DetalhesHotel.module.css';
 

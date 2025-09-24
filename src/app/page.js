@@ -1,12 +1,12 @@
-// src/app/hoteis/page.js
-"use client";
 // src/app/page.js
-import Layout from '../components/layout/Layout';
+"use client";
+//import Layout from '../components/layout/Layout';
 import HeroSection from '../components/HeroSection';
 import SearchBar from '../components/SearchBar';
-import CartaoHotel from '../components/CartaoHotel'; // Mantenha este para a seção de destaques
-import { useEffect, useState } from 'react'; // Adicione esses imports
-import styles from './page.module.css'; // Vamos criar este arquivo em breve
+import CartaoHotel from '../components/CartaoHotel';
+import Galeria from '../components/Galeria'; // Importe o novo componente Galeria
+import { useEffect, useState } from 'react';
+import styles from './page.module.css';
 
 export default function Home() {
   const [hoteis, setHoteis] = useState([]);
@@ -21,7 +21,6 @@ export default function Home() {
           throw new Error('Falha ao buscar os dados da API.');
         }
         const data = await response.json();
-        // Limita a exibição a 3 hotéis na página inicial
         setHoteis(data.slice(0, 3)); 
       } catch (err) {
         setError(err.message);
@@ -34,7 +33,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout>
+    <>
       <HeroSection />
       <SearchBar />
 
@@ -53,9 +52,8 @@ export default function Home() {
           )}
         </div>
       </div>
-    </Layout>
+       {/* Adicione o componente Galeria aqui, logo abaixo da seção de hotéis */}
+      <Galeria />
+    </>
   );
 }
-
-// Crie também o arquivo src/app/page.module.css
-// e adicione estilos para as classes styles.secaoHoteis, styles.tituloSecao, etc.

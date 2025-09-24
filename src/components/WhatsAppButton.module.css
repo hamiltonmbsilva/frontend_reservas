@@ -1,0 +1,26 @@
+/* src/components/WhatsAppButton.module.css */
+.botaoWhatsApp {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366; /* Cor oficial do WhatsApp */
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.botaoWhatsApp:hover {
+  transform: scale(1.1);
+}
+
+.icone {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}

@@ -1,9 +1,12 @@
 /* src/components/Navbar.module.css */
+/* src/components/Navbar.module.css */
 .navbar {
-  background-color: #fff; /* Fundo branco ou off-white */
-  border-bottom: 1px solid #E2E8F0; /* Borda sutil */
+  background-color: #1A202C; /* Fundo azul marinho da nossa paleta */
   padding: 1.5rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra mais visível */
+  position: sticky; /* Mantém o navbar no topo ao rolar a página */
+  top: 0;
+  z-index: 1000;
 }
 
 .container {
@@ -21,31 +24,68 @@
 }
 
 .linkLogo {
-  color: #1A202C; /* Azul marinho para a logo */
+  color: #F7FAFC; /* Branco para a logo, para contrastar com o fundo */
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .linkLogo:hover {
-  color: #D69E2E; /* Destaque ao passar o mouse */
+  color: #D69E2E; /* Efeito de destaque dourado ao passar o mouse */
 }
 
-.navLinks .link {
-  color: #4a5568; /* Cinza escuro para os links */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Espaço entre os links */
+}
+
+.link {
+  color: #F7FAFC; /* Branco para os links, em contraste com o fundo */
   text-decoration: none;
   font-weight: 500;
-  margin-left: 2.5rem;
-  transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 8px; /* Cantos arredondados */
+  transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
 }
 
-.navLinks .link:hover {
-  color: #D69E2E; /* Destaque ao passar o mouse */
+.link:hover {
+  color: #D69E2E; /* Cor de destaque ao passar o mouse */
+  background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil */
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #D69E2E; /* Acento dourado */
+  transition: width 0.3s ease;
+}
+
+/* Efeito ao passar o mouse: a linha dourada aparece */
+.link:hover::after {
+  width: 70%;
+}
+
+/* Estilo para o link da página ativa */
+.link.active {
+  color: #D69E2E; /* Cor de destaque para o link ativo */
+  font-weight: 600;
+}
+
+/* Garante que o link ativo tenha a linha de acento visível */
+.link.active::after {
+  width: 70%;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
   .navLinks {
-    display: none; /* Esconder os links em telas menores */
+    display: none;
   }
 }

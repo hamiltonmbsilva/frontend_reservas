@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Layout';
-import HotelCard from '../../components/HotelCard';
+import CartaoHotel  from '../../components/CartaoHotel';
 
 export default function HoteisPage() {
   const [hoteis, setHoteis] = useState([]);
@@ -56,7 +56,7 @@ export default function HoteisPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {hoteis.length > 0 ? (
             hoteis.map(hotel => (
-              <HotelCard key={hotel.id} hotel={hotel} />
+              <CartaoHotel key={hotel.id} hotel={hotel} />
             ))
           ) : (
             <p className="text-center text-gray-500 col-span-full">Nenhum hotel encontrado.</p>
