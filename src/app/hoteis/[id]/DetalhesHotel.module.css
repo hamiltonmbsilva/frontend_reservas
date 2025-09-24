@@ -1,0 +1,71 @@
+/* src/app/hoteis/[id]/DetalhesHotel.module.css */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.titulo {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.endereco {
+  font-size: 1.125rem;
+  color: #4a5568;
+}
+
+.descricao {
+  font-size: 1rem;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  text-align: justify;
+}
+
+.subtitulo {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.listaQuartos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.erro, .semQuartos {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #e53e3e;
+  padding: 2rem;
+}
+
+.semQuartos {
+    color: #718096;
+}
+
+.imagemPrincipal {
+  width: 100%;
+  height: 400px; /* Altura fixa para a imagem */
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta a imagem para cobrir o container */
+}

@@ -1,0 +1,51 @@
+/* src/components/Navbar.module.css */
+.navbar {
+  background-color: #fff; /* Fundo branco ou off-white */
+  border-bottom: 1px solid #E2E8F0; /* Borda sutil */
+  padding: 1.5rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.linkLogo {
+  color: #1A202C; /* Azul marinho para a logo */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.linkLogo:hover {
+  color: #D69E2E; /* Destaque ao passar o mouse */
+}
+
+.navLinks .link {
+  color: #4a5568; /* Cinza escuro para os links */
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 2.5rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.navLinks .link:hover {
+  color: #D69E2E; /* Destaque ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .navLinks {
+    display: none; /* Esconder os links em telas menores */
+  }
+}

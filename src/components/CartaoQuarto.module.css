@@ -1,0 +1,49 @@
+/* src/components/CartaoQuarto.module.css */
+.cartao {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.cartao:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.conteudo {
+  padding: 1.5rem;
+}
+
+.titulo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.descricao {
+  color: #4a5568;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.info {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.info p {
+  margin: 0.25rem 0;
+}
+
+.imagem {
+  height: 200px; /* Altura fixa para a imagem do cartão */
+  overflow: hidden;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta a imagem para cobrir o container */
+}

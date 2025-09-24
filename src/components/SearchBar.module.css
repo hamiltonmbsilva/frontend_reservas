@@ -1,0 +1,60 @@
+/* src/components/SearchBar.module.css */
+.container {
+  position: relative;
+  margin-top: -3rem; /* Elevar a barra de busca para sobrepor a seção inicial */
+  z-index: 20;
+  padding: 0 1rem;
+}
+
+.form {
+  display: flex;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+}
+
+.input {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #a0aec0;
+}
+
+.botao {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #4c51bf;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botao:hover {
+  background-color: #3f479d;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .form {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .input {
+    margin-bottom: 1rem;
+  }
+
+  .botao {
+    width: 100%;
+  }
+}

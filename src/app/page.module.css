@@ -1,0 +1,42 @@
+/* Estilos para a seção de hotéis em destaque na Home */
+.secaoHoteis {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tituloSecao {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2d3748;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.listaHoteis {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Estilos para mensagens de estado (carregando, erro) */
+.loading,
+.erro,
+.semHoteis {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #718096;
+  padding: 2rem;
+}
+
+.erro {
+  color: #e53e3e;
+  font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .listaHoteis {
+    grid-template-columns: 1fr;
+  }
+}
