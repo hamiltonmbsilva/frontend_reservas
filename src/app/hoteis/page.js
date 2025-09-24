@@ -2,9 +2,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import Layout from '../components/layout/Layout';
-import CartaoHotel from '../components/CartaoHotel'; // Mudei o nome para português
-import styles from './hoteis/styles/Hoteis.module.css'; // Importando o CSS Module
+import Layout from '../../components/layout/Layout';
+import HotelCard from '../../components/HotelCard';
 
 export default function HoteisPage() {
   const [hoteis, setHoteis] = useState([]);
@@ -28,13 +27,13 @@ export default function HoteisPage() {
     }
 
     fetchHoteis();
-  }, []);
+  }, []); // O array vazio garante que a função só roda uma vez, ao montar o componente
 
   if (loading) {
     return (
       <Layout>
-        <div className={styles.container}>
-          <p className="text-xl text-gray-700 text-center">Carregando hotéis...</p>
+        <div className="flex justify-center items-center min-h-screen">
+          <p className="text-xl text-gray-700">Carregando hotéis...</p>
         </div>
       </Layout>
     );
@@ -43,8 +42,8 @@ export default function HoteisPage() {
   if (error) {
     return (
       <Layout>
-        <div className={styles.container}>
-          <p className="text-xl text-red-500 text-center">Erro: {error}</p>
+        <div className="flex justify-center items-center min-h-screen">
+          <p className="text-xl text-red-500">Erro: {error}</p>
         </div>
       </Layout>
     );
@@ -52,12 +51,12 @@ export default function HoteisPage() {
 
   return (
     <Layout>
-      <div className={styles.container}>
-        <h1 className={styles.titulo}>Nossos Hotéis</h1>
-        <div className={styles.listaHoteis}>
+      <div className="container mx-auto p-8">
+        <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">Nossos Hotéis</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {hoteis.length > 0 ? (
             hoteis.map(hotel => (
-              <CartaoHotel key={hotel.id} hotel={hotel} />
+              <HotelCard key={hotel.id} hotel={hotel} />
             ))
           ) : (
             <p className="text-center text-gray-500 col-span-full">Nenhum hotel encontrado.</p>
