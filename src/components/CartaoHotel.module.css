@@ -11,6 +11,9 @@
   cursor: pointer;
   height: 350px; /* Altura fixa para todos os cartões na Home */
   position: relative; /* ESSENCIAL para o posicionamento do overlay */
+  height: 350px; /* GARANTE A ALTURA MÁXIMA DO CARTÃO */
+  position: relative; 
+  overflow: hidden; /* ESSENCIAL para que a imagem não saia do card */
 }
 
 .cartao:hover {
@@ -27,6 +30,8 @@
   background-size: cover; /* Garante que a imagem cubra toda a área */
   background-position: center;
   transition: transform 0.4s ease;
+  background-size: cover; /* GARANTE QUE A IMAGEM COBRE O ESPAÇO SEM DISTORCER */
+  background-position: center;
 }
 
 .cartao:hover .imagemFundo {
@@ -44,23 +49,28 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end; /* Alinha o conteúdo na parte inferior */
-  padding: 1.5rem;
-  z-index: 2; /* Fica acima da imagem de fundo */
+  padding: 1rem 1.5rem; /* AJUSTE NO PADDING: Diminuído o padding vertical (1rem) para dar mais espaço */
+  z-index: 2;
 }
 
 .nome {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff; /* Texto em branco */
-  margin-bottom: 0.5rem;
+  color: #fff;
+  margin-top: 30;
+  margin-bottom: 0.25rem; /* REDUZIDO: Espaço menor abaixo do nome */
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  line-height: 1.2; /* Adicionado para controlar a altura da linha */
 }
 
 .cidade {
   font-size: 1rem;
-  color: #D69E2E; /* Cor de destaque */
+  color: #D69E2E;
   font-weight: 500;
-  margin-top: 0;
+  margin-top: 10;
+  margin-bottom: 0.25rem; /* REMOVIDO: Garante que não há margem extra que empurre para fora */
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+  line-height: 1.2; /* Adicionado para controlar a altura da linha */
 }
 
 .linkWrapper {
