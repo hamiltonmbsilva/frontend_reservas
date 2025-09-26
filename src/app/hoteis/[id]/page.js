@@ -47,19 +47,19 @@ export default function DetalhesHotel() {
   }, [id]);
 
   if (loading) {
-    return <Layout><div className={styles.container}><p>Carregando detalhes do hotel...</p></div></Layout>;
+    return <div className={styles.container}><p>Carregando detalhes do hotel...</p></div>;
   }
 
   if (error) {
-    return <Layout><div className={styles.container}><p className={styles.erro}>{error}</p></div></Layout>;
+    return <div className={styles.container}><p className={styles.erro}>{error}</p></div>;
   }
 
   if (!hotel) {
-    return <Layout><div className={styles.container}><p>Hotel não encontrado.</p></div></Layout>;
+    return <div className={styles.container}><p>Hotel não encontrado.</p></div>;
   }
 
   return (
-    <Layout>
+    
       <div className={styles.container}>
         {/* Adicione a imagem principal do hotel aqui */}
         {hotel.imagem_principal && (
@@ -87,6 +87,6 @@ export default function DetalhesHotel() {
           )}
         </div>
       </div>
-    </Layout>
+    
   );
 }

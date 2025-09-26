@@ -2,7 +2,7 @@
 .hero {
   position: relative;
   height: 80vh; /* Altura da tela */
-  background-image: url('/images/hero-bg.jpg'); /* Adicione uma imagem em 'public/images' */
+  background-image: url('/images/hero-bg.jpeg'); /* Adicione uma imagem em 'public/images' */
   background-size: cover;
   background-position: center;
   display: flex;
