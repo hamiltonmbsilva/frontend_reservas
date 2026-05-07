@@ -1,91 +1,118 @@
-/* src/components/Navbar.module.css */
-/* src/components/Navbar.module.css */
-.navbar {
-  background-color: #1A202C; /* Fundo azul marinho da nossa paleta */
-  padding: 1.5rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra mais visível */
-  position: sticky; /* Mantém o navbar no topo ao rolar a página */
+.header {
+  position: sticky;
   top: 0;
   z-index: 1000;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.container {
-  max-width: 1200px;
+.nav {
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 1rem 1.4rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-
-.linkLogo {
-  color: #F7FAFC; /* Branco para a logo, para contrastar com o fundo */
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.linkLogo:hover {
-  color: #D69E2E; /* Efeito de destaque dourado ao passar o mouse */
-}
-
-.navLinks {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Espaço entre os links */
+  gap: 0.7rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.logo span span {
+  color: var(--hds-accent);
+}
+
+.logoIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--hds-accent), #f5d26b);
+  color: var(--hds-primary);
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .link {
-  color: #F7FAFC; /* Branco para os links, em contraste com o fundo */
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 8px; /* Cantos arredondados */
-  transition: all 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-.link:hover {
-  color: #D69E2E; /* Cor de destaque ao passar o mouse */
-  background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil */
-}
-
-.link::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background-color: #D69E2E; /* Acento dourado */
-  transition: width 0.3s ease;
-}
-
-/* Efeito ao passar o mouse: a linha dourada aparece */
-.link:hover::after {
-  width: 70%;
-}
-
-/* Estilo para o link da página ativa */
-.link.active {
-  color: #D69E2E; /* Cor de destaque para o link ativo */
+  color: #cbd5e1;
+  padding: 0.75rem 0.9rem;
+  border-radius: 999px;
   font-weight: 600;
+  transition: 0.25s;
 }
 
-/* Garante que o link ativo tenha a linha de acento visível */
-.link.active::after {
-  width: 70%;
+.link:hover,
+.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.09);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .navLinks {
+.cta {
+  margin-left: 0.7rem;
+  padding: 0.8rem 1.1rem;
+  border-radius: 999px;
+  background: var(--hds-accent);
+  color: var(--hds-primary);
+  font-weight: 800;
+  transition: 0.25s;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.menuButton {
+  display: none;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 0.55rem 0.75rem;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 850px) {
+  .menuButton {
+    display: block;
+  }
+
+  .links {
+    position: absolute;
+    top: 74px;
+    left: 1rem;
+    right: 1rem;
     display: none;
+    flex-direction: column;
+    align-items: stretch;
+    background: #0f172a;
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: var(--hds-shadow);
+  }
+
+  .linksAberto {
+    display: flex;
+  }
+
+  .link,
+  .cta {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
   }
 }

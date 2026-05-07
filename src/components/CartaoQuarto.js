@@ -1,25 +1,26 @@
-// src/components/CartaoQuarto.js
-import React from 'react';
-import styles from './CartaoQuarto.module.css';
+import React from "react";
+import styles from "./CartaoQuarto.module.css";
 
 export default function CartaoQuarto({ quarto }) {
+  const imagem = quarto.imagem_url || "/images/quarto-placeholder.jpeg";
+
   return (
-    <div className={styles.cartao}>
-      {/* Adicione a imagem principal do quarto aqui */}
-      {quarto.imagem_principal && (
-          <div className={styles.imagem}>
-              <img src={quarto.imagem_principal} alt={`Quarto ${quarto.tipo}`} className={styles.img} />
-          </div>
-      )}
+    <article className={styles.cartao}>
+      <div className={styles.imagem}>
+        <img src={imagem} alt={`Quarto ${quarto.numero}`} className={styles.img} />
+      </div>
 
       <div className={styles.conteudo}>
-        <h3 className={styles.titulo}>{quarto.tipo}</h3>
-        <p className={styles.descricao}>{quarto.descricao}</p>
+        <span className={styles.seloHds}>HDS Reserva</span>
+        <h3 className={styles.titulo}>Quarto {quarto.numero}</h3>
+        <p className={styles.descricao}>Tipo: {quarto.tipo}</p>
+
         <div className={styles.info}>
-          <p>Capacidade: {quarto.capacidade_de_pessoas} pessoas</p>
-          <p>Preço: R$ {quarto.preco_por_noite}</p>
+          <p>Capacidade: {quarto.capacidade} pessoa(s)</p>
+          <p>Diária: R$ {Number(quarto.preco_por_noite).toFixed(2)}</p>
+          <p>{quarto.disponivel ? "Disponível" : "Indisponível"}</p>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

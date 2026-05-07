@@ -1,42 +1,63 @@
-/* Estilos para a seção de hotéis em destaque na Home */
-.secaoHoteis {
-  padding: 4rem 2rem;
-  max-width: 1200px;
+.section {
+  max-width: 1180px;
   margin: 0 auto;
+  padding: 5rem 1.4rem;
 }
 
-.tituloSecao {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #2d3748;
+.header {
   text-align: center;
-  margin-bottom: 2rem;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
 }
 
-.listaHoteis {
+.header span {
+  color: var(--hds-accent);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.header h2 {
+  color: var(--hds-primary);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  margin: 0.6rem 0;
+  letter-spacing: -0.04em;
+}
+
+.header p {
+  color: var(--hds-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
 }
 
-/* Estilos para mensagens de estado (carregando, erro) */
-.loading,
-.erro,
-.semHoteis {
+.message,
+.error {
   text-align: center;
-  font-size: 1.1rem;
-  color: #718096;
-  padding: 2rem;
+  font-weight: 700;
 }
 
-.erro {
-  color: #e53e3e;
-  font-weight: 500;
+.error {
+  color: #dc2626;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .listaHoteis {
+@media (max-width: 950px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .section {
+    padding: 3.5rem 1rem;
+  }
+
+  .grid {
     grid-template-columns: 1fr;
   }
 }

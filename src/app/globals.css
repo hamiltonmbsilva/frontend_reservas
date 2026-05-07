@@ -1,5 +1,52 @@
-/* src/app/globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --hds-bg: #f6f8fb;
+  --hds-card: #ffffff;
+  --hds-primary: #0f172a;
+  --hds-secondary: #1e3a8a;
+  --hds-accent: #d4a017;
+  --hds-accent-soft: #fff7df;
+  --hds-text: #1f2937;
+  --hds-muted: #64748b;
+  --hds-border: #e2e8f0;
+  --hds-success: #16a34a;
+  --hds-radius: 22px;
+  --hds-shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--hds-bg);
+  color: var(--hds-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  min-height: 70vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input {
+  font-family: inherit;
+}

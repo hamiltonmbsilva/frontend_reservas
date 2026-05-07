@@ -1,53 +1,60 @@
-// src/components/Navbar.js
 "use client";
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import styles from './Navbar.module.css';
+
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import styles from "./Navbar.module.css";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/hoteis", label: "Hotéis" },
+  { href: "/galeria", label: "Galeria" },
+  { href: "/quem-somos", label: "Quem Somos" },
+  { href: "/contato", label: "Contato" },
+];
 
 export default function Navbar() {
   const pathname = usePathname();
-  // Estado para garantir que a classe ativa só seja aplicada no cliente
-  const [isMounted, setIsMounted] = useState(false); 
+  const [menuAberto, setMenuAberto] = useState(false);
 
-  useEffect(() => {
-    // Isso garante que o componente só aplique a lógica que difere
-    // entre Server e Client APÓS a montagem do lado do cliente
-    setIsMounted(true);
-  }, []);
+  function isActive(href) {
+    if (href === "/hoteis") return pathname.startsWith("/hoteis");
+    return pathname === href;
+  }
 
-  // Use a variável de pathname apenas se o componente estiver montado
-  const activeClass = (path) => 
-    isMounted ? (pathname === path || (path === '/hoteis' && pathname.startsWith('/hoteis/')) ? styles.active : '') : '';
-    
-  // NOTA: Para a rota de Hoteis, precisamos de uma lógica mais robusta
-  const isHoteisActive = isMounted && pathname.startsWith('/hoteis');
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.container}>
-        <div className={styles.logo}>
-          <Link href="/">
-            <span className={styles.linkLogo}>ReservasMB</span>
+    <header className={styles.header}>
+      <nav className={styles.nav}>
+        <Link href="/" className={styles.logo}>
+          <span className={styles.logoIcon}>HDS</span>
+          <span>Reserva<span>MB</span></span>
+        </Link>
+
+        <button
+          className={styles.menuButton}
+          onClick={() => setMenuAberto(!menuAberto)}
+          aria-label="Abrir menu"
+        >
+          ☰
+        </button>
+
+        <div className={`${styles.links} ${menuAberto ? styles.linksAberto : ""}`}>
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuAberto(false)}
+              className={`${styles.link} ${isActive(link.href) ? styles.active : ""}`}
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          <Link href="/hoteis" className={styles.cta}>
+            Reservar agora
           </Link>
         </div>
-        <div className={styles.navLinks}>
-          <Link href="/">
-            <span className={`${styles.link} ${activeClass('/')}`}>Home</span>
-          </Link>
-          <Link href="/hoteis">
-            <span className={`${styles.link} ${isHoteisActive ? styles.active : ''}`}>Hotéis</span>
-          </Link>
-          <Link href="/galeria">
-            <span className={`${styles.link} ${activeClass('/galeria')}`}>Galeria</span>
-          </Link>
-          <Link href="/quem-somos">
-            <span className={`${styles.link} ${activeClass('/quem-somos')}`}>Quem Somos</span>
-          </Link>
-          <Link href="/contato">
-            <span className={`${styles.link} ${activeClass('/contato')}`}>Contato</span>
-          </Link>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }

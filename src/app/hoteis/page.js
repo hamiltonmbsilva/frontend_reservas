@@ -1,68 +1,55 @@
-// src/app/hoteis/page.js
 "use client";
 
-import { useState, useEffect } from 'react';
-import Layout from '../../components/layout/Layout';
-import CartaoHotel  from '../../components/CartaoHotel';
+import { useEffect, useState } from "react";
+import HeroSection from "../components/HeroSection";
+import SearchBar from "../components/SearchBar";
+import CartaoHotel from "../components/CartaoHotel";
+import Galeria from "../components/Galeria";
+import { apiFetch } from "../services/api";
+import styles from "./page.module.css";
 
-export default function HoteisPage() {
+export default function Home() {
   const [hoteis, setHoteis] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [erro, setErro] = useState(null);
 
   useEffect(() => {
-    async function fetchHoteis() {
+    async function carregarHoteis() {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/hoteis/');
-        if (!response.ok) {
-          throw new Error('Falha ao buscar os dados da API.');
-        }
-        const data = await response.json();
-        setHoteis(data);
-      } catch (err) {
-        setError(err.message);
+        const data = await apiFetch("/hoteis/");
+        setHoteis(data.slice(0, 3));
+      } catch (error) {
+        setErro(error.message);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchHoteis();
-  }, []); // O array vazio garante que a função só roda uma vez, ao montar o componente
-
-  if (loading) {
-    return (
-      <Layout>
-        <div className="flex justify-center items-center min-h-screen">
-          <p className="text-xl text-gray-700">Carregando hotéis...</p>
-        </div>
-      </Layout>
-    );
-  }
-
-  if (error) {
-    return (
-      <Layout>
-        <div className="flex justify-center items-center min-h-screen">
-          <p className="text-xl text-red-500">Erro: {error}</p>
-        </div>
-      </Layout>
-    );
-  }
+    carregarHoteis();
+  }, []);
 
   return (
-    <Layout>
-      <div className="container mx-auto p-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">Nossos Hotéis</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <>
+      <HeroSection />
+      <SearchBar />
+
+      <section className={styles.secaoHoteis}>
+        <span className={styles.selo}>Projeto real HDS</span>
+        <h2 className={styles.tituloSecao}>Hotéis em destaque</h2>
+
+        {loading && <p className={styles.loading}>Carregando hotéis...</p>}
+        {erro && <p className={styles.erro}>Erro: {erro}</p>}
+
+        <div className={styles.listaHoteis}>
           {hoteis.length > 0 ? (
-            hoteis.map(hotel => (
-              <CartaoHotel key={hotel.id} hotel={hotel} />
-            ))
+            hoteis.map((hotel) => <CartaoHotel key={hotel.id} hotel={hotel} />)
           ) : (
-            <p className="text-center text-gray-500 col-span-full">Nenhum hotel encontrado.</p>
+            !loading && <p className={styles.semHoteis}>Nenhum hotel encontrado.</p>
           )}
         </div>
-      </div>
-    </Layout>
+      </section>
+
+      <Galeria />
+    </>
   );
 }

@@ -1,35 +1,31 @@
-// src/app/page.js
 "use client";
-//import Layout from '../components/layout/Layout';
-import HeroSection from '../components/HeroSection';
-import SearchBar from '../components/SearchBar';
-import CartaoHotel from '../components/CartaoHotel';
-import Galeria from '../components/Galeria'; // Importe o novo componente Galeria
-import { useEffect, useState } from 'react';
-import styles from './page.module.css';
+
+import { useEffect, useState } from "react";
+import HeroSection from "../components/HeroSection";
+import SearchBar from "../components/SearchBar";
+import CartaoHotel from "../components/CartaoHotel";
+import Galeria from "../components/Galeria";
+import { apiFetch } from "../services/api";
+import styles from "./page.module.css";
 
 export default function Home() {
   const [hoteis, setHoteis] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [erro, setErro] = useState(null);
 
   useEffect(() => {
-    async function fetchHoteis() {
+    async function carregarHoteis() {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/hoteis/');
-        if (!response.ok) {
-          throw new Error('Falha ao buscar os dados da API.');
-        }
-        const data = await response.json();
-        setHoteis(data.slice(0, 3)); 
-      } catch (err) {
-        setError(err.message);
+        const data = await apiFetch("/hoteis/");
+        setHoteis(data.slice(0, 3));
+      } catch (error) {
+        setErro(error.message);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchHoteis();
+    carregarHoteis();
   }, []);
 
   return (
@@ -37,22 +33,25 @@ export default function Home() {
       <HeroSection />
       <SearchBar />
 
-      <div className={styles.secaoHoteis}>
-        <h2 className={styles.tituloSecao}>Hotéis em Destaque</h2>
-        {loading && <p className={styles.loading}>Carregando hotéis...</p>}
-        {error && <p className={styles.erro}>Erro: {error}</p>}
-        
-        <div className={styles.listaHoteis}>
-          {hoteis.length > 0 ? (
-            hoteis.map(hotel => (
-              <CartaoHotel key={hotel.id} hotel={hotel} />
-            ))
-          ) : (
-            !loading && <p className={styles.semHoteis}>Nenhum hotel encontrado.</p>
-          )}
+      <section className={styles.section}>
+        <div className={styles.header}>
+          <span>Reservas inteligentes</span>
+          <h2>Hotéis em destaque</h2>
+          <p>
+            Cards modernos, responsivos e conectados com a API real do projeto.
+          </p>
         </div>
-      </div>
-       {/* Adicione o componente Galeria aqui, logo abaixo da seção de hotéis */}
+
+        {loading && <p className={styles.message}>Carregando hotéis...</p>}
+        {erro && <p className={styles.error}>{erro}</p>}
+
+        <div className={styles.grid}>
+          {hoteis.map((hotel) => (
+            <CartaoHotel key={hotel.id} hotel={hotel} />
+          ))}
+        </div>
+      </section>
+
       <Galeria />
     </>
   );
