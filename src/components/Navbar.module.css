@@ -25,6 +25,38 @@
   color: #fff;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.logoImage {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoText strong {
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.logoText span {
+  color: #fde68a;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-weight: 700;
+}
+
 .logo span span {
   color: var(--hds-accent);
 }

@@ -9,8 +9,16 @@ export default function Footer() {
       <div className={styles.container}>
         <section className={styles.brand}>
           <div className={styles.logo}>
-            <span>HDS</span>
-            <strong>ReservaMB</strong>
+            <img
+              src="/favicon-128x128.png"
+              alt="ReservaMB HDS"
+              className={styles.footerLogo}
+            />
+
+            <div>
+              <strong>ReservaMB</strong>
+              <span>HDS Systems</span>
+            </div>
           </div>
 
           <p>

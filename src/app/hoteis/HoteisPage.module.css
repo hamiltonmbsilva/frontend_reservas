@@ -35,22 +35,55 @@
   margin: 0;
 }
 
-.searchBox {
-  background: #fff;
+.filters {
+  background: var(--hds-card);
   border: 1px solid var(--hds-border);
-  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
-  border-radius: 22px;
-  padding: 0.8rem;
+  box-shadow: var(--hds-shadow);
+  border-radius: 26px;
+  padding: 1rem;
   margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr auto;
+  gap: 1rem;
+  align-items: end;
 }
 
-.searchBox input {
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 1rem;
-  font-size: 1rem;
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field label {
   color: var(--hds-primary);
+  font-weight: 900;
+  font-size: 0.85rem;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  border: 1px solid var(--hds-border);
+  border-radius: 16px;
+  padding: 1rem;
+  outline: none;
+  color: var(--hds-primary);
+  background: var(--hds-bg);
+}
+
+.filters button {
+  border: none;
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  background: var(--hds-secondary);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.filters button:hover {
+  background: var(--hds-primary);
+  transform: translateY(-2px);
 }
 
 .grid {
@@ -62,17 +95,25 @@
 .message,
 .error {
   text-align: center;
-  font-weight: 700;
+  font-weight: 800;
   padding: 2rem;
 }
 
 .error {
-  color: #dc2626;
+  color: var(--hds-danger);
 }
 
 @media (max-width: 950px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filters button {
+    grid-column: span 2;
   }
 }
 
@@ -81,7 +122,12 @@
     padding: 3rem 1rem;
   }
 
-  .grid {
+  .grid,
+  .filters {
     grid-template-columns: 1fr;
+  }
+
+  .filters button {
+    grid-column: auto;
   }
 }

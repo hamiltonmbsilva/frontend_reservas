@@ -21,6 +21,28 @@
   margin-bottom: 1rem;
 }
 
+.footerLogo {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.logo div {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo div strong {
+  color: #fff;
+}
+
+.logo div span {
+  color: #fde68a;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
 .logo span {
   width: 44px;
   height: 44px;
