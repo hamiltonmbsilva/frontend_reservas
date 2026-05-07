@@ -1,60 +1,86 @@
-/* src/components/SearchBar.module.css */
-.container {
+.wrapper {
+  max-width: 1100px;
+  margin: -3.2rem auto 0;
+  padding: 0 1.4rem;
   position: relative;
-  margin-top: -3rem; /* Elevar a barra de busca para sobrepor a seção inicial */
   z-index: 20;
-  padding: 0 1rem;
 }
 
 .form {
-  display: flex;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem;
-}
-
-.input {
-  flex: 1;
+  background: #fff;
+  border-radius: 26px;
+  box-shadow: var(--hds-shadow);
+  border: 1px solid var(--hds-border);
   padding: 1rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr auto;
+  gap: 0.8rem;
+  align-items: end;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field span {
+  color: var(--hds-primary);
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid var(--hds-border);
+  border-radius: 16px;
+  padding: 0.95rem;
   outline: none;
+  color: var(--hds-primary);
+  background: var(--hds-bg);
 }
 
-.input::placeholder {
-  color: #a0aec0;
+.field input:focus {
+  border-color: var(--hds-secondary);
 }
 
-.botao {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #fff;
-  background-color: #4c51bf;
+.form button {
   border: none;
-  border-radius: 8px;
+  border-radius: 16px;
+  padding: 1rem 1.3rem;
+  background: var(--hds-accent);
+  color: var(--hds-primary);
+  font-weight: 900;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: 0.25s;
 }
 
-.botao:hover {
-  background-color: #3f479d;
+.form button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .form {
-    flex-direction: column;
-    padding: 1rem;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .input {
-    margin-bottom: 1rem;
+  .form button {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .wrapper {
+    margin-top: -2rem;
+    padding: 0 1rem;
   }
 
-  .botao {
-    width: 100%;
+  .form {
+    grid-template-columns: 1fr;
+    border-radius: 22px;
+  }
+
+  .form button {
+    grid-column: auto;
   }
 }

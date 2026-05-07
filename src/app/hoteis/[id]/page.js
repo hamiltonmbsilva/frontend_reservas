@@ -6,19 +6,19 @@ import CartaoQuarto from "../../../components/CartaoQuarto";
 import { apiFetch } from "../../../services/api";
 import styles from "./DetalhesHotel.module.css";
 
-export default function DetalhesHotel() {
+export default function DetalhesHotelPage() {
   const { id } = useParams();
+
   const [hotel, setHotel] = useState(null);
   const [quartos, setQuartos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState(null);
 
   useEffect(() => {
-    async function carregarDados() {
+    async function carregarDetalhes() {
       try {
-        setLoading(true);
         const hotelData = await apiFetch(`/hoteis/${id}/`);
-        const quartosData = await apiFetch(`/quartos/?hotel=${id}&disponivel=true`);
+        const quartosData = await apiFetch(`/quartos/?hotel=${id}`);
 
         setHotel(hotelData);
         setQuartos(quartosData);
@@ -29,49 +29,71 @@ export default function DetalhesHotel() {
       }
     }
 
-    if (id) carregarDados();
+    if (id) carregarDetalhes();
   }, [id]);
 
   if (loading) {
-    return <main className={styles.container}>Carregando detalhes do hotel...</main>;
+    return <main className={styles.page}>Carregando detalhes...</main>;
   }
 
   if (erro) {
-    return <main className={styles.container}><p className={styles.erro}>{erro}</p></main>;
+    return <main className={styles.page}><p className={styles.error}>{erro}</p></main>;
   }
 
   if (!hotel) {
-    return <main className={styles.container}>Hotel não encontrado.</main>;
+    return <main className={styles.page}>Hotel não encontrado.</main>;
   }
 
-  const imagem = hotel.imagem_principal_url || "/images/hotel-placeholder.jpeg";
+  const imagem = hotel.imagem_principal_url || hotel.imagem_principal || "/images/hotel-placeholder.jpeg";
 
   return (
-    <main className={styles.container}>
-      <div className={styles.imagemPrincipal}>
-        <img src={imagem} alt={`Imagem de ${hotel.nome}`} className={styles.img} />
-      </div>
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.imageBox}>
+          <img src={imagem} alt={hotel.nome} />
+        </div>
 
-      <header className={styles.header}>
-        <span className={styles.selo}>Reserva HDS</span>
-        <h1 className={styles.titulo}>{hotel.nome}</h1>
-        <p className={styles.endereco}>
-          {hotel.endereco}, {hotel.cidade} - {hotel.estado}
-        </p>
-      </header>
+        <div className={styles.infoBox}>
+          <span className={styles.badge}>Hotel selecionado HDS</span>
+          <h1>{hotel.nome}</h1>
+          <p className={styles.location}>
+            {hotel.endereco}, {hotel.cidade} - {hotel.estado}
+          </p>
+          <p className={styles.description}>{hotel.descricao}</p>
 
-      <section className={styles.descricao}>
-        <p>{hotel.descricao}</p>
+          <div className={styles.highlights}>
+            <div>
+              <strong>{quartos.length}</strong>
+              <span>quarto(s)</span>
+            </div>
+            <div>
+              <strong>{hotel.cidade}</strong>
+              <span>localização</span>
+            </div>
+            <div>
+              <strong>API</strong>
+              <span>integrada</span>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <h2 className={styles.subtitulo}>Quartos disponíveis</h2>
+      <section className={styles.roomsSection}>
+        <div className={styles.sectionHeader}>
+          <span>Disponibilidade</span>
+          <h2>Quartos deste hotel</h2>
+          <p>Escolha um quarto e avance para a reserva real do sistema.</p>
+        </div>
 
-      <section className={styles.listaQuartos}>
-        {quartos.length > 0 ? (
-          quartos.map((quarto) => <CartaoQuarto key={quarto.id} quarto={quarto} />)
-        ) : (
-          <p className={styles.semQuartos}>Nenhum quarto disponível para este hotel.</p>
-        )}
+        <div className={styles.roomsGrid}>
+          {quartos.length > 0 ? (
+            quartos.map((quarto) => (
+              <CartaoQuarto key={quarto.id} quarto={quarto} />
+            ))
+          ) : (
+            <p className={styles.empty}>Nenhum quarto cadastrado para este hotel.</p>
+          )}
+        </div>
       </section>
     </main>
   );

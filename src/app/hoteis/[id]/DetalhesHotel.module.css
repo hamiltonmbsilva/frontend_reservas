@@ -1,71 +1,158 @@
-/* src/app/hoteis/[id]/DetalhesHotel.module.css */
-.container {
-  max-width: 900px;
+.page {
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 4rem 1.4rem 5rem;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.titulo {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 0.5rem;
-}
-
-.endereco {
-  font-size: 1.125rem;
-  color: #4a5568;
-}
-
-.descricao {
-  font-size: 1rem;
-  color: #4a5568;
-  line-height: 1.6;
-  margin-bottom: 3rem;
-  text-align: justify;
-}
-
-.subtitulo {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.listaQuartos {
+.hero {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1.08fr 0.92fr;
   gap: 2rem;
+  align-items: center;
+  margin-bottom: 5rem;
 }
 
-.erro, .semQuartos {
+.imageBox {
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: var(--hds-shadow);
+  min-height: 440px;
+}
+
+.imageBox img {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  object-fit: cover;
+}
+
+.infoBox {
+  background: #fff;
+  border: 1px solid var(--hds-border);
+  border-radius: 32px;
+  padding: 2rem;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+}
+
+.badge {
+  display: inline-flex;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  background: var(--hds-accent-soft);
+  color: var(--hds-secondary);
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.infoBox h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--hds-primary);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+  letter-spacing: -0.05em;
+}
+
+.location {
+  color: var(--hds-secondary);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.description {
+  color: var(--hds-muted);
+  line-height: 1.8;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.highlights div {
+  background: var(--hds-bg);
+  border-radius: 18px;
+  padding: 1rem;
+}
+
+.highlights strong {
+  display: block;
+  color: var(--hds-primary);
+  font-size: 1.15rem;
+}
+
+.highlights span {
+  color: var(--hds-muted);
+  font-size: 0.85rem;
+}
+
+.sectionHeader {
   text-align: center;
-  font-size: 1.1rem;
-  color: #e53e3e;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+}
+
+.sectionHeader span {
+  color: var(--hds-accent);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.sectionHeader h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--hds-primary);
+  margin: 0.5rem 0;
+  letter-spacing: -0.04em;
+}
+
+.sectionHeader p {
+  color: var(--hds-muted);
+  line-height: 1.7;
+}
+
+.roomsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+
+.empty,
+.error {
+  text-align: center;
+  font-weight: 700;
   padding: 2rem;
 }
 
-.semQuartos {
-    color: #718096;
+.error {
+  color: #dc2626;
 }
 
-.imagemPrincipal {
-  width: 100%;
-  height: 400px; /* Altura fixa para a imagem */
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .roomsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ajusta a imagem para cobrir o container */
+@media (max-width: 650px) {
+  .page {
+    padding: 3rem 1rem;
+  }
+
+  .imageBox,
+  .imageBox img {
+    min-height: 280px;
+  }
+
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .roomsGrid {
+    grid-template-columns: 1fr;
+  }
 }
